@@ -1,0 +1,43 @@
+{% extends 'services/base.html' %}
+
+{% load crispy_forms_tags %}
+{% block title %} Rental {% endblock %}
+{% block content %}
+
+<div class="container">
+    <h3><b>RECENT RESERVATIONS</b></h3>
+    <br>
+    <br>
+    <table class="table table-hover">
+        <thead style="background-color: #f8f9fa;">
+        <tr>
+            <!--                            <th>S.N.</th>-->
+            <th>RENTAL NAME</th>
+            <th></th>
+            <th>ID</th>
+            <th>CHECK OUT</th>
+            <th>CHECK IN</th>
+            <th>PREVIOUS RESERVATION ID</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for reservation in reservations %}
+        <tr>
+            <!--                            <td>-->
+            <!--                                {{ forloop.counter }}-->
+            <!--                            </td>-->
+
+            <td>{{ reservation.rental_name }}</td>
+            <td></td>
+            <td>{{ reservation.rental_id }}</td>
+            <td>{{ reservation.checkIn|date }}</td>
+            <td>{{ reservation.checkOut|date }}</td>
+            <td>{{ reservation.previous_reservation_id }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
