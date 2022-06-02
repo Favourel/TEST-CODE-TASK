@@ -9,7 +9,7 @@ for item in choices:
 
 
 class CreateReservationForm(forms.ModelForm):
-    rental_name = forms.Select(attrs={"class": 'form-control', "label": False}, choices=choices)
+    rental_name = forms.Select(attrs={"class": 'form-control', "placeholder": "Select Rental Service"}, choices=choices)
 
     checkIn = forms.DateTimeField(widget=forms.TextInput(attrs={
 
