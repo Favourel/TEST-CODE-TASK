@@ -18,7 +18,6 @@ class Reservation(models.Model):
     checkIn = models.DateField()
     checkOut = models.DateField()
     previous_reservation_id = models.CharField(max_length=20, null=True, blank=True)
-    # test = models.ForeignKey("Reservation", on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return f"{self.rental_id}"

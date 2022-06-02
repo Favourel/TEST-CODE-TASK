@@ -1,6 +1,7 @@
 from django.shortcuts import reverse
 from django.test import TestCase
 from .models import Reservation, Rental
+
 # Create your tests here.
 
 

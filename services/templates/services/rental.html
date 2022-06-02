@@ -13,10 +13,6 @@
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
 
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -27,10 +23,12 @@
           type="text/css"/>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
             type="text/javascript"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <!--    <script href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">-->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="https://cdn.ayroui.com/1.0/css/tiny-slider.css"/>
+
+
+    <script src="https://cdn.ayroui.com/1.0/js/tiny-slider.js"></script>
 
     <title>
         TEST CODE TASK | Create Reservation
@@ -58,9 +56,6 @@ body {
 a {color: #fd5631;}
 a:hover{color:#fd5631}
 
-h1,h2,h3,h4,h5,h6{
-	color:hsl(0, 0%, 30%);
-}
 @media (min-width: 48em) {
 
 .box-element{
@@ -75,35 +70,22 @@ h1,h2,h3,h4,h5,h6{
 	padding: 3px;
     }
 }
+.container {
+    max-width: 77rem;
+}
+
+
+
+
+
+
+
+
 </style>
 
-{% load crispy_forms_tags %}
 <br>
 <br>
 <body>
-<style>
-    .alert-success {
-        display: block;
-        font-weight: 400;
-        font-size: 13px;
-        padding: 10px 10px 10px 65px;
-        margin: 0 0 10px 0;
-        background: #dfd url(../images/icon-yes.svg) 40px 12px no-repeat;
-        background-size: 16px auto;
-        color: #333;
-    }
-    .alert-warning {
-        background: #ffc url(../images/icon-alert.svg) 40px 14px no-repeat;
-        background-size: 14px auto;
-    }
-
-    .alert-error {
-        background: #ffefef url(../images/icon-no.svg) 40px 12px no-repeat;
-        background-size: 16px auto;
-    }
-
-
-</style>
 
 <br>
 
@@ -114,40 +96,16 @@ h1,h2,h3,h4,h5,h6{
                 padding: 5px;
             }
         </style>
-        <div style="margin-bottom: 20px;" class="box-element rounded overflow-hidden">
-
-            {% if messages %}
-            {% for msg in messages %}
-            <div id="overlay" class="alert alert-{{ msg.tags }} alert-dismissible text-center fade show" role="alert">
-                <b id="msg-text">
-                    {% if msg.tags == 'error' %}
-                    <svg width="1.4rem" height="1.4rem" class="ml-3" viewBox="0 0 1792 1792"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#dd4646"
-                              d="M1277 1122q0-26-19-45l-181-181 181-181q19-19 19-45 0-27-19-46l-90-90q-19-19-46-19-26 0-45 19l-181 181-181-181q-19-19-45-19-27 0-46 19l-90 90q-19 19-19 46 0 26 19 45l181 181-181 181q-19 19-19 45 0 27 19 46l90 90q19 19 46 19 26 0 45-19l181-181 181 181q19 19 45 19 27 0 46-19l90-90q19-19 19-46zm387-226q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"/>
-                    </svg>
-                    {% endif %}
-                    {% if msg.tags == 'success' %}
-                    <svg width="1.4rem" height="1.4rem" class="ml-3" viewBox="0 0 1792 1792"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#70bf2b"
-                              d="M1412 734q0-28-18-46l-91-90q-19-19-45-19t-45 19l-408 407-226-226q-19-19-45-19t-45 19l-91 90q-18 18-18 46 0 27 18 45l362 362q19 19 45 19 27 0 46-19l543-543q18-18 18-45zm252 162q0 209-103 385.5t-279.5 279.5-385.5 103-385.5-103-279.5-279.5-103-385.5 103-385.5 279.5-279.5 385.5-103 385.5 103 279.5 279.5 103 385.5z"/>
-                    </svg>
-                    {% endif %}
-                    {{ msg|upper }}
-                </b>
-
-            </div>
-            {% endfor %}
-            {% endif %}
+        <div style="margin-bottom: 20px;" class="box-element overflow-hidden">
+            <h3 class="center"><b>Book Reservation today</b></h3>
+            <p>Loren ipsum nes menu cos detum.</p>
+            <br>
             <div class="row">
                 <div class="col-lg-6">
-                    <h3 class="center"><b>Book Reservation today</b></h3>
-                    <p>Enter your name, check-in and check-out time to book</p>
-                    <br>
                     {% include 'services/image.html' %}
                 </div>
                 <div class="col-lg-6 p-2">
+                    <br>
                     <div style="border-radius: 3px;margin-bottom: 20px;" class=" rounded overflow-hidden ">
                         <div class="d-flex flex-column">
                             <form id="create-form" action="{% url 'add_rental' %}" method="POST">
@@ -165,7 +123,7 @@ h1,h2,h3,h4,h5,h6{
                                 </div>
 
                                 <br>
-                                <button id="submit" type="submit" class="btn btn-block btn-info">
+                                <button id="submit" type="submit" class="btn btn-block">
                                     <div class="spinner-border text-light hidden" id="spinner" role="status">
                                         <span class="sr-only">Loading...</span>
                                     </div>
@@ -176,17 +134,447 @@ h1,h2,h3,h4,h5,h6{
                                         width: 1.5rem;
                                         height: 1.5rem;
                                     }
+
+
+
+
+
+
+
+
                                 </style>
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
-    <a href="javascript:history.go(-1)" class="btn mt-2 mb-4 btn-outline-info">&#x2190; Go back</a>
+    <a href="{% url 'recent_reservation' %}" class="btn shadow mt-2 mb-4">Recent Reservation</a>
 </div>
+
+<style>
+    /*===== TESTIMONIAL STYLE ONE =====*/
+
+    .testimonial-one .section-title-seven {
+      text-align: center;
+      max-width: 550px;
+      margin: auto;
+
+      position: relative;
+      z-index: 5;
+    }
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+      .testimonial-one .section-title-seven {
+        margin-bottom: 45px;
+      }
+    }
+    @media (max-width: 767px) {
+      .testimonial-one .section-title-seven {
+        margin-bottom: 35px;
+      }
+    }
+    .testimonial-one .section-title-seven span {
+      text-transform: uppercase;
+      color: black;
+      display: inline-block;
+      margin-bottom: 8px;
+      font-size: 25px;
+      font-weight: 600;
+    }
+    .testimonial-one .section-title-seven h5 {
+      font-weight: 600;
+      margin-bottom: 7px;
+      color: var(--primary);
+      text-transform: uppercase;
+      font-size: 1rem;
+    }
+    @media (max-width: 767px) {
+      .testimonial-one .section-title-seven h5 {
+        font-size: 0.8rem;
+      }
+    }
+    .testimonial-one .section-title-seven h2 {
+      position: relative;
+      padding-bottom: 15px;
+    }
+    .testimonial-one .section-title-seven h2::before {
+      position: absolute;
+      content: "";
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%);
+      bottom: 0;
+      height: 3px;
+      width: 50px;
+      background-color: var(--primary);
+    }
+    @media only screen and (min-width: 768px) and (max-width: 991px) {
+      .testimonial-one .section-title-seven h2 {
+        font-size: 2rem;
+        line-height: 2.8rem;
+      }
+    }
+    @media (max-width: 767px) {
+      .testimonial-one .section-title-seven h2 {
+        font-size: 1.5rem;
+        line-height: 1.9rem;
+      }
+    }
+    .testimonial-one .section-title-seven p {
+      color: var(--dark-3);
+    }
+    .testimonial-one .testimonial-one-active {
+      margin: 0;
+    }
+    .testimonial-one .testimonial-one-wrapper {
+      position: relative;
+    }
+    .testimonial-one .testimonial-one-wrapper .tns-nav {
+      position: absolute;
+      z-index: 2;
+      bottom: -40px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .testimonial-one .testimonial-one-wrapper .tns-nav button {
+      font-size: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--dark);
+      opacity: 0.3;
+      border: 0;
+      margin: 0 3px;
+      -webkit-transition: all 0.4s ease-out 0s;
+      -moz-transition: all 0.4s ease-out 0s;
+      -ms-transition: all 0.4s ease-out 0s;
+      -o-transition: all 0.4s ease-out 0s;
+      transition: all 0.4s ease-out 0s;
+    }
+    .testimonial-one .testimonial-one-wrapper .tns-nav button.tns-nav-active {
+      opacity: 1;
+    }
+    .testimonial-one .single-testimonial {
+      margin-top: 30px;
+      padding: 30px;
+      background-color: var(--white);
+      border: 1px solid var(--gray-4);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    .testimonial-one .single-testimonial::before {
+      position: absolute;
+      content: "";
+      left: 0;
+      bottom: 0;
+      height: 4px;
+      width: 0%;
+      background-color: var(--primary);
+      -webkit-transition: all 0.4s ease-out 0s;
+      -moz-transition: all 0.4s ease-out 0s;
+      -ms-transition: all 0.4s ease-out 0s;
+      -o-transition: all 0.4s ease-out 0s;
+      transition: all 0.4s ease-out 0s;
+    }
+    .testimonial-one .single-testimonial:hover::before {
+      width: 100%;
+    }
+    .testimonial-one .single-testimonial .testimonial-image {
+      position: relative;
+      display: inline-block;
+    }
+    .testimonial-one .single-testimonial .testimonial-image img {
+      width: 100%;
+      height: 200px;
+
+      display: inline-block;
+    }
+    .testimonial-one .single-testimonial .testimonial-image .quote-icon {
+      height: 35px;
+      width: 35px;
+
+      text-align: center;
+      background-color: #fd5631;
+      color: var(--white);
+      font-size: 18px;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+    .testimonial-one .single-testimonial .testimonial-content {
+      padding-top: 30px;
+    }
+    .testimonial-one .single-testimonial .testimonial-content .text {
+      color: #000;
+    }
+    .testimonial-one .single-testimonial .testimonial-content .author-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: black;
+      margin-top: 24px;
+    }
+    .testimonial-one .single-testimonial .testimonial-content .sub-title {
+      font-size: 14px;
+      line-height: 24px;
+      color: black;
+    }
+
+
+
+
+
+
+
+
+</style>
+<section class="testimonial-one container">
+    <!--======  Start Section Title Seven ======-->
+    <div class="container-testimonial" align="center">
+        <h2><b>Where to book reservation?</b></h2>
+        <h6>Lorem ipsum dolor samet consenter discing elitr,
+            serewd diam nonumy eirmod tempor invidunt ut labore.
+        </h6>
+    </div>
+
+    <div class="testimonial-one-wrapper">
+        <div class="row">
+            <div class="col p-3">
+                <div class="testimonial-one-active">
+                    <div class="col-lg-3">
+                        <div class="single-testimonial text-center">
+                            <div class="testimonial-image">
+                                <img src="https://media.istockphoto.com/photos/render-of-luxury-hotel-lobby-and-reception-picture-id1163395014?k=20&m=1163395014&s=612x612&w=0&h=kss8hRxLStjyagVHfbfmJsuimpjn0GcbyW_GC-ShOMo="
+                                     alt="">
+                            </div>
+                            <div class="testimonial-content">
+                                <p class="text">
+                                    Lorem ipsum dolor samet consenter discing elitr,
+                                    serewd diam nonumy eirmod tempor invidunt ut labore. To build some content.
+                                </p>
+                                <h6 class="author-name">Rental Service 1</h6>
+                            </div>
+                        </div>
+                        <!-- single tesimonial -->
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="single-testimonial text-center">
+                            <div class="testimonial-image">
+                                <img src="https://www.gannett-cdn.com/-mm-/c6ce345dd3cc67c30388965835e2347ef87cfcc7/c=0-366-2700-1885/local/-/media/2020/03/03/USATODAY/usatsports/MotleyFool-TMOT-b9d6657b-hotel-room.jpg?width=2700&height=1519&fit=crop&format=pjpg&auto=webp"
+                                     alt="">
+                            </div>
+                            <div class="testimonial-content">
+                                <p class="text">
+                                    Lorem ipsum dolor samet consenter discing elitr,
+                                    serewd diam nonumy eirmod tempor invidunt ut labore. To build some content.
+                                </p>
+                                <h6 class="author-name">Rental Service 2</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="single-testimonial text-center">
+                            <div class="testimonial-image">
+                                <img src="https://media.istockphoto.com/photos/3d-rendering-beautiful-luxury-bedroom-suite-in-hotel-with-tv-picture-id1050564510?k=20&m=1050564510&s=612x612&w=0&h=QHxWH_n-VlHac2z4qFwCSh1RB9QInNzZDHA11K28fI8="
+                                     alt=""/>
+
+                            </div>
+                            <div class="testimonial-content">
+                                <p class="text">
+                                    Lorem ipsum dolor samet consenter discing elitr,
+                                    serewd diam nonumy eirmod tempor invidunt ut labore. To build some content.
+                                </p>
+                                <h6 class="author-name">Rental Service 3</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="single-testimonial  text-center">
+                            <div class="testimonial-image">
+                                <img src="https://media.istockphoto.com/photos/digitally-rendered-image-of-a-fivestar-hotel-interior-picture-id1333257950?b=1&k=20&m=1333257950&s=170667a&w=0&h=T8H8O-k_znwhUyBtdH_aiwHUPG62DhH6XLbrv9AkXUY="
+                                     alt=""/>
+                            </div>
+                            <div class="testimonial-content">
+                                <p class="text">
+                                    Lorem ipsum dolor samet consenter discing elitr,
+                                    serewd diam nonumy eirmod tempor invidunt ut labore. To build some content.
+                                </p>
+                                <h6 class="author-name">Rental Service 4</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<br>
+<br>
+<br>
+
+<script>
+    //======== tiny slider for testimonial-one
+    tns({
+      autoplay: true,
+      autoplayButtonOutput: false,
+      mouseDrag: true,
+      gutter: 5,
+      container: ".testimonial-one-active",
+      center: true,
+      nav: true,
+      controls: false,
+      speed: 400,
+      controlsText: [
+        '<i class="lni lni-arrow-left-circle"></i>',
+        '<i class="lni lni-arrow-right-circle"></i>',
+      ],
+      responsive: {
+        0: {
+          items: 1,
+        },
+
+        992: {
+          items: 2,
+        },
+        1200: {
+          items: 3,
+        },
+      },
+    });
+
+
+
+
+
+
+
+
+
+</script>
+<div class="container">
+    <div class="col-lg-7">
+        <h4><b>Frequently asked questions</b></h4>
+        <div class="accordion mt-2" id="accordionExample">
+            <div class="mb-2">
+                <div class="" id="headingOne">
+                    <h6 class="mb-0">
+
+                        <a style="cursor: pointer" class=" btn-link btn-block text-left" data-toggle="collapse"
+                           data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                                 class="bi bi-arrow-down-circle mr-1" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                      d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                            </svg>
+                            <b>
+                                Can I book a refundable accommodation option in London?</b>
+                        </a>
+
+                    </h6>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                     data-parent="#accordionExample">
+                    <div class="card-body">
+                        Lorem ipsum dolor samet consenter discing elitr,
+                        serewd diam nonumy eirmod tempor invidunt ut labore
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-2" id="headingTwo">
+                <h6 class="mb-0">
+
+                    <a style="cursor: pointer" class=" btn-link btn-block text-left collapsed"
+                       data-toggle="collapse"
+                       data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                             class="bi bi-arrow-down-circle mr-1" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                        </svg>
+                        <b>
+                            What will the weather in London be like during my visit?</b>
+                    </a>
+
+                </h6>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    Lorem ipsum dolor samet consenter discing elitr,
+                    serewd diam nonumy eirmod tempor invidunt ut labore
+                </div>
+            </div>
+            <br>
+
+            <div class="" id="headingThree">
+                <h6 class="mb-0">
+
+                    <a style="cursor: pointer" class=" btn-link btn-block text-left collapsed"
+                       data-toggle="collapse"
+                       data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                             class="bi bi-arrow-down-circle mr-1" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                        </svg>
+                        <b>
+                            Where can I stay in London if I want a holiday rental instead of a hotel?</b>
+                    </a>
+
+                </h6>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    Lorem ipsum dolor samet consenter discing elitr,
+                    serewd diam nonumy eirmod tempor invidunt ut labore
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<hr>
+<footer id="main-footer">
+    <div class="container d-md-flex align-items-center justify-content-between py-2 text-center text-md-left">
+        <ul class="list-inline font-size-sm mb-3 mb-md-0 order-md-2">
+            <br><br>
+            <hr style="color: #fff" class="my-3">
+            <li class="list-inline-item my-1"><a class="text-decoration-none text-dark" href="#">Contacts</a></li>
+            <li class="list-inline-item my-1"><a class="text-decoration-none text-dark" href="">About</a></li>
+            <li class="list-inline-item my-1"><a class="text-decoration-none text-dark"
+                                                 href="">Pricing</a></li>
+            <br>
+        </ul>
+        <p class="font-size-sm mb-0 mr-3 order-md-1">
+            <span class="text-decoration-none">
+            © 2022-Test CODE TASK.
+            </span>
+            <a class="text-decoration-none font-weight-normal" href="/"
+               target="_blank" rel="noopener">Favour Elodimuor</a><br><br>
+            <a href="#">
+                <img src="https://img.icons8.com/fluent/48/000000/facebook-new.png"/></a>
+            <a href="#">
+                <img src="https://img.icons8.com/color/48/000000/twitter-squared.png"/></a>
+            <a href="#">
+                <img src="https://img.icons8.com/fluent/48/000000/instagram-new.png"/>
+            </a><br><br>
+        </p>
+    </div>
+</footer>
 <style>
     .hidden {
         display: none;
@@ -218,6 +606,14 @@ h1,h2,h3,h4,h5,h6{
             document.querySelector("#button-text").classList.remove("hidden");
         }
     };
+
+
+
+
+
+
+
+
 
 </script>
 
