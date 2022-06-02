@@ -21,7 +21,6 @@ class CreateReservationForm(forms.ModelForm):
     )
     )
     checkOut = forms.DateTimeField(widget=forms.TextInput(attrs={
-
         'type': 'date',
         'name': 'checkOut',
         'id': 'checkOut',
