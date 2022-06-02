@@ -3,6 +3,7 @@ from .models import Rental, Reservation
 from datetime import datetime
 from .forms import *
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib import messages
 
 
 # Create your views here.
@@ -14,16 +15,20 @@ def add_rental_view(request):
         form = CreateReservationForm(request.POST)
         if form.is_valid():
             form = form.save(commit=False)
-            form.rental_id = rental_id
+            if form.checkOut > form.checkIn:
+                form.rental_id = rental_id
 
-            try:
-                obj = Reservation.objects.filter(rental_name=form.rental_name).latest("rental_id")
-                form.previous_reservation_id = obj
-                form.save()
-            except ObjectDoesNotExist:
+                try:
+                    obj = Reservation.objects.filter(rental_name=form.rental_name).latest("rental_id")
+                    form.previous_reservation_id = obj
+                    form.save()
+                except ObjectDoesNotExist:
 
-                form.save()
-            return redirect("recent_reservation")
+                    form.save()
+                return redirect("recent_reservation")
+            else:
+                messages.error(request, "Input a valid date")
+                return redirect("add_rental")
     else:
         form = CreateReservationForm()
     context = {
